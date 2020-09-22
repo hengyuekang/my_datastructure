@@ -27,10 +27,10 @@ public:
     // ctor
     List() { init(); }
     // copy constructor
-    List(List<T> const &L);
+    List(List<T> const &L) { copyNodes(L.first(), _size); }
     // copy n nodes from L.r
     List(List<T> const &L, Rank r, int n);
-    List(ListNodePosi(T) p, int n);
+    List(ListNodePosi(T) p, int n) { copyNodes(p, n); }
     // delete all the nodes(include header and trailer)
     // ~List();
     // read only
@@ -215,7 +215,7 @@ T List<T>::remove(ListNodePosi(T) p)
     (p->_pred)->_succ = p->_succ;
     (p->_succ)->_pred = p->_pred;
     delete p;
-    return res;
+    _size-- return res;
 }
 template <typename T>
 void List<T>::uniquify()
@@ -311,8 +311,31 @@ void List<T>::copyNodes(ListNode<T> *p, int n)
     List();
     while ((n--) > 0)
     {
-        auto x = insertAfter(_header, p->_data);
+        // dont use it,no need to store it
+        insertAfter(_header, p->_data);
         p = p->_succ;
     }
+}
+template <typename T>
+List<T>::List(List<T> const &L, Rank r, int n)
+{
+    ListNodePosi(T) p = _header->_succ;
+    while (r--)
+    {
+        p = p->_succ;
+    }
+    copyNodes(p, n);
+}
+template <typename T>
+int List<T>::clear()
+{
+    ListNodePosi(T) p = _header;
+    while (p != _trailer)
+    {
+        p = p->_succ;
+        delete p->_pred;
+    }
+    delete p;
+    return empty();
 }
 #endif
