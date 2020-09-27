@@ -1,0 +1,16 @@
+{
+    "files.associations": {
+        "algorithm": "cpp",
+        "cctype": "cpp",
+        "cstdio": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp",
+        "xmemory": "cpp",
+        "xstring": "cpp",
+        "xtr1common": "cpp",
+        "xutility": "cpp",
+        "iosfwd": "cpp"
+    }
+}
