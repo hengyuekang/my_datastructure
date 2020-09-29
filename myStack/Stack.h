@@ -9,10 +9,12 @@ public:
     // Stack() = default;
     // ~Stack();
     // read only
+    // directly use them from vector
+    // bool empty() const { return _size <= 0; }
     // Rank size() const { return _size; }
-    T &top() const { return _elem[_size - 1]; }
-    bool empty() const { return _size <= 0; }
+    // use overload
+    T &top() const { return (*this)[size() - 1]; }
     void push(T const &e) { insert(e); }
     // remove: Conflict with an existing function in cstdio.h
-    T pop() { return Remove(_size - 1); }
+    T pop() { return Remove(size() - 1); }
 };
