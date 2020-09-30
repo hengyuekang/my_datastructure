@@ -1,5 +1,5 @@
-#pragma once
-#include "stdafx.h"
+#ifndef VECTOR_H
+#define VECTOR_H
 using Rank = int;
 #define DEFAULT_CAPACITY 3
 
@@ -47,7 +47,7 @@ public:
         copyFrom(V._elem, 0, V._size);
     }
     ~Vector() { delete[] _elem; }
-    Rank size() const { return _size; }
+    Rank Size() const { return _size; }
     bool empty() const { return !_size; }
     int disordered() const;
     Rank find(T const &e) const { return find(e, 0, _size); }
@@ -170,3 +170,4 @@ T Vector<T>::Remove(Rank r)
     Remove(r, r + 1);
     return e;
 }
+#endif

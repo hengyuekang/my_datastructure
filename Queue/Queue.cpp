@@ -1,24 +1,22 @@
-﻿// myStack.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
+﻿// Queue.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
 //
 
 #include "stdafx.h"
 
 int main()
 {
-    Stack<int> iStack;
-    for (int i = 0; i < 5; i++)
+    Queue<int> iQueue;
+    for (int i = 0; i < 6; i++)
     {
-        iStack.push(i);
+        iQueue.enqueue(i);
     }
-    int res = iStack.top();
-    iStack.pop();
-    res = iStack.top();
-    std::cout << res << std::endl;
-    for (int i = 0; i < iStack.Size(); i++)
+    int result = iQueue.front();
+    std::cout << result << std::endl;
+    iQueue.dequeue();
+    for (int i = 0; i < iQueue.size(); i++)
     {
-        std::cout << iStack[i] << " ";
+        std::cout << iQueue[i] << " ";
     }
-
     return 0;
 }
 
