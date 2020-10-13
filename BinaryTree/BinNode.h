@@ -108,7 +108,7 @@ public:
     // write
     BinNodePosi(T) insertAsLC(T const &e);
     BinNodePosi(T) insertAsRC(T const &e);
-    // traverse
+    // traverse using pointer of function
     template <typename VST>
     void travLevel(VST &);
     template <typename VST>
@@ -157,9 +157,35 @@ void BinNode<T>::travIn(VST &visit)
         travIn_I4(this, visit);
         break;
     default:
+        // regression
         travIn_R(this, visit);
         break;
     }
 }
-
+template <typename T>
+template <typename VST>
+void BinNode<T>::travpRE(VST &visit)
+{
+    //random choice
+    // 5 kinds of situations
+    switch (rand() % 5)
+    {
+    case 1:
+        travIn_I1(this, visit);
+        break;
+    case 2:
+        travIn_I2(this, visit);
+        break;
+    case 3:
+        travIn_I3(this, visit);
+        break;
+    case 4:
+        travIn_I4(this, visit);
+        break;
+    default:
+        // regression
+        travIn_R(this, visit);
+        break;
+    }
+}
 #endif
