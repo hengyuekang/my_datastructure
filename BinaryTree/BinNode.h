@@ -3,78 +3,29 @@
 // similar to list
 #define BinNodePosi(T) BinNode<T> *
 // height of empty tree is -1
-#define stature(p)               \
-    do                           \
-    {                            \
-        (p) ? (p)->_height : -1; \
-    } while (0);
+#define stature(p) ((p) ? (p)->_height : -1)
 /****************************************************************************
 statement x:BinNode
 *****************************************************************************/
-#define IsRoot(x)    \
-    do               \
-    {                \
-        !(x)._parent \
-    } while (0);
-#define IsLChild(x)                            \
-    do                                         \
-    {                                          \
-        !IsRoot(x) && (x) == (x)._parent->_lc; \
-    } while (0);
-#define IsRChild(x)                              \
-    do                                           \
-    {                                            \
-        ` !IsRoot(x) && (x) == (x)._parent->_rc; \
-    } while (0);
-#define HasParent(x) \
-    do               \
-    {                \
-        !IsRoot(x);  \
-    } while (0);
-#define HasLChild(x) \
-    do               \
-    {                \
-        (x)._lc;     \
-    } while (0);
-#define HasRChild(x) \
-    do               \
-    {                \
-        (x)._rc;     \
-    } while (0);
-#define HasChild(x)                   \
-    do                                \
-    {                                 \
-        HasLChild(x) || HasRChild(x); \
-    } while (0);
-#define HasBothChild(x)               \
-    do                                \
-    {                                 \
-        HasLChild(x) || HasRChild(x); \
-    } while (0);
-#define IsLeaf(x)     \
-    do                \
-    {                 \
-        !HasChild(x); \
-    } while (0);
+#define IsRoot(x) (!((x)._parent))
+#define IsLChild(x) (!IsRoot(x) && (&(x) == (x)._parent->_lc))
+#define IsRChild(x) (!IsRoot(x) && (&(x) == (x)._parent->_rc))
+#define HasParent(x) (!IsRoot(x))
+#define HasLChild(x) ((x)._lc)
+#define HasRChild(x) ((x)._rc)
+#define HasChild(x) (HasLChild(x) || HasRChild(x))
+#define HasBothChild(x) (HasLChild(x) || HasRChild(x))
+#define IsLeaf(x) (!HasChild(x))
 /*****************************************************
 related pointers
 ******************************************************/
 // brother
-#define sibling(p)                                            \
-    do                                                        \
-    {                                                         \
-        IsLChild(*p) ? (p)->_parent->_rc : (p)->_parent->_lc; \
-    } while (0);
-#define uncle(p)                                                                         \
-    do                                                                                   \
-    {                                                                                    \
-        IsLChild(*(p->_parent)) ? (p)->_parent->_parent->_rc : p->_parent->_parent->_lc; \
-    } while (0);
-#define FromParentTo(x)                                                          \
-    do                                                                           \
-    {                                                                            \
-        IsRoot(x) ? _root : (IsLChild(x) ? (x)._parent->_lc : (x)._parent->_rc); \
-    } while (0);
+#define sibling(p) \
+    (IsLChild(*(p)) ? (p)->_parent->_rc : (p)->_parent->_lc)
+#define uncle(p) \
+    (IsLChild(*((p)->_parent)) ? (p)->_parent->_parent->_rc : p->_parent->_parent->_lc)
+#define FromParentTo(x) \
+    (IsRoot(x) ? _root : (IsLChild(x) ? (x)._parent->_lc : (x)._parent->_rc))
 // color
 typedef enum
 {
@@ -164,27 +115,53 @@ void BinNode<T>::travIn(VST &visit)
 }
 template <typename T>
 template <typename VST>
-void BinNode<T>::travpRE(VST &visit)
+void BinNode<T>::travPre(VST &visit)
 {
     //random choice
     // 5 kinds of situations
     switch (rand() % 5)
     {
     case 1:
-        travIn_I1(this, visit);
+        travPre_I1(this, visit);
         break;
     case 2:
-        travIn_I2(this, visit);
+        travPre_I2(this, visit);
         break;
     case 3:
-        travIn_I3(this, visit);
+        travPre_I3(this, visit);
         break;
     case 4:
-        travIn_I4(this, visit);
+        travPre_I4(this, visit);
         break;
     default:
         // regression
-        travIn_R(this, visit);
+        travPre_R(this, visit);
+        break;
+    }
+}
+template <typename T>
+template <typename VST>
+void BinNode<T>::travPost(VST &visit)
+{
+    //random choice
+    // 5 kinds of situations
+    switch (rand() % 5)
+    {
+    case 1:
+        travPost_I1(this, visit);
+        break;
+    case 2:
+        travPost_I2(this, visit);
+        break;
+    case 3:
+        travPost_I3(this, visit);
+        break;
+    case 4:
+        travPost_I4(this, visit);
+        break;
+    default:
+        // regression
+        travPost_R(this, visit);
         break;
     }
 }

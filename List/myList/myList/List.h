@@ -215,7 +215,8 @@ T List<T>::remove(ListNodePosi(T) p)
     (p->_pred)->_succ = p->_succ;
     (p->_succ)->_pred = p->_pred;
     delete p;
-    _size-- return res;
+    _size--;
+    return res;
 }
 template <typename T>
 void List<T>::uniquify()

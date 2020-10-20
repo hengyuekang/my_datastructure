@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "xstring": "cpp",
+        "ios": "cpp",
+        "istream": "cpp",
+        "iterator": "cpp",
+        "streambuf": "cpp",
+        "xlocale": "cpp",
+        "xlocnum": "cpp",
+        "limits": "cpp",
+        "utility": "cpp",
+        "memory": "cpp"
+    }
+}
