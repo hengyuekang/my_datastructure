@@ -92,27 +92,9 @@ template <typename T>
 template <typename VST>
 void BinNode<T>::travIn(VST &visit)
 {
-    //random choice
-    // 5 kinds of situations
-    switch (rand() % 5)
-    {
-    case 1:
-        travIn_I1(this, visit);
-        break;
-    case 2:
-        travIn_I2(this, visit);
-        break;
-    case 3:
-        travIn_I3(this, visit);
-        break;
-    case 4:
-        travIn_I4(this, visit);
-        break;
-    default:
-        // regression
-        travIn_R(this, visit);
-        break;
-    }
+
+    // regression
+    travIn_R(this, visit);
 }
 template <typename T>
 template <typename VST>
@@ -120,25 +102,9 @@ void BinNode<T>::travPre(VST &visit)
 {
     //random choice
     // 5 kinds of situations
-    switch (rand() % 5)
-    {
-    case 1:
-        travPre_I1(this, visit);
-        break;
-    case 2:
-        travPre_I2(this, visit);
-        break;
-    case 3:
-        travPre_I3(this, visit);
-        break;
-    case 4:
-        travPre_I4(this, visit);
-        break;
-    default:
-        // regression
-        travPre_R(this, visit);
-        break;
-    }
+
+    // regression
+    travPre_R(this, visit);
 }
 template <typename T>
 template <typename VST>
@@ -146,26 +112,8 @@ void BinNode<T>::travPost(VST &visit)
 {
     //random choice
     // 5 kinds of situations
-    switch (rand() % 5)
-    {
-        // iteration
-    case 1:
-        travPost_I1(this, visit);
-        break;
-    case 2:
-        travPost_I2(this, visit);
-        break;
-    case 3:
-        travPost_I3(this, visit);
-        break;
-    case 4:
-        travPost_I4(this, visit);
-        break;
-    default:
-        // regression
-        travPost_R(this, visit);
-        break;
-    }
+
+    travPost_R(this, visit);
 }
 // must be put together
 template <typename T, typename VST>
@@ -200,53 +148,5 @@ void travIn_R(BinNodePosi(T) x, VST &visit)
     travIn_R(x->_lc, visit);
     visit(x->_data);
     travIn_R(x->_rc, visit);
-}
-template <typename T, typename VST>
-void travPre_I1(BinNodePosi(T) x, VST &visit)
-{
-    // put rc fist because stack is "first in,last out"
-    Stack<BinNodePosi(T)> S;
-    if (x)
-    {
-        S.push(x);
-    }
-    while (!S.empty())
-    {
-        x = S.pop();
-        visit(x->_data);
-        if (HasRChild(*x))
-        {
-            S.push(x->_rc);
-        }
-        if (HasLChild(*x))
-        {
-            S.push(x->_lc);
-        }
-    }
-}
-template <typename T, typename VST>
-void visitalongleftbrench(BinNodePosi(T) x, VST &visit, Stack<BinNodePosi(T)> &S)
-{
-    while (x)
-    {
-        visit(x->_data);
-        S.push(x->_rc);
-        x = x->_lc;
-    }
-}
-template <typename T, typename VST>
-void travPre_I2(BinNodePosi(T) x, VST &visit)
-{
-    Stack<BinNodePosi(T)> S;
-    while (1)
-    {
-        // push NULL even have no rc
-        visitalongleftbrench(x, visit, S);
-        if (S.empty())
-        {
-            break;
-        }
-        x = S.pop();
-    }
 }
 #endif

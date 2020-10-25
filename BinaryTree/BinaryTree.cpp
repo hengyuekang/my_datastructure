@@ -2,15 +2,21 @@
 //
 
 #include "stdafx.h"
-
+void output(int data)
+{
+    std::cout << data << std::endl;
+}
 int main()
 {
     BinTree<int> iBinTree;
-    iBinTree.insertAsRoot(0);
+    iBinTree.insertAsRoot(1);
     auto p = iBinTree.root();
-    iBinTree.insertAsLC(p, 1);
-    iBinTree.insertAsRC(p, 2);
-    std::cout << p->_height;
+    iBinTree.insertAsLC(p, 2);
+    p = iBinTree.insertAsRC(p, 3);
+    p = iBinTree.insertAsLC(p, 4);
+    iBinTree.insertAsRC(p, 6);
+    iBinTree.insertAsRC(p->_parent, 5);
+    travPre_I2(iBinTree.root(), output);
     return 0;
 }
 

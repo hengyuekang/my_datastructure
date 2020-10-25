@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.rmd": "markdown",
+        "xiosbase": "cpp",
+        "xlocale": "cpp"
+    }
+}
