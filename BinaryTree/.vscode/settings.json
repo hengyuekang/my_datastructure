@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.rmd": "markdown",
         "xstring": "cpp",
         "ios": "cpp",
         "istream": "cpp",
@@ -9,6 +10,15 @@
         "xlocnum": "cpp",
         "limits": "cpp",
         "utility": "cpp",
-        "memory": "cpp"
+        "memory": "cpp",
+        "algorithm": "cpp",
+        "cctype": "cpp",
+        "cstdio": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "type_traits": "cpp",
+        "xmemory": "cpp",
+        "xtr1common": "cpp",
+        "xutility": "cpp"
     }
 }

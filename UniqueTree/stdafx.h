@@ -4,6 +4,4 @@
 #include <cstring>
 #include "BinNode.h"
 #include "BinTree.h"
-#include "Stack.h"
-#include "Vector.h"
 #endif

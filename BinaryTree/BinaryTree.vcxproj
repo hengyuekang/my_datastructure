@@ -144,6 +144,9 @@
   <ItemGroup>
     <ClInclude Include="BinNode.h" />
     <ClInclude Include="BinTree.h" />
+    <ClInclude Include="List.h" />
+    <ClInclude Include="ListNode.h" />
+    <ClInclude Include="Queue.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Vector.h" />

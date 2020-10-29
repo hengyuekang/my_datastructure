@@ -16,7 +16,7 @@ int main()
     p = iBinTree.insertAsLC(p, 4);
     iBinTree.insertAsRC(p, 6);
     iBinTree.insertAsRC(p->_parent, 5);
-    travPre_I2(iBinTree.root(), output);
+    iBinTree.root()->travLevel(output);
     return 0;
 }
 

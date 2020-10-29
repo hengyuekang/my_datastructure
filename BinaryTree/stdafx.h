@@ -1,8 +1,10 @@
-#ifndef STDFAX_H
-#define STDFAX_H
+#pragma once
 #include <iostream>
 #include "BinNode.h"
 #include "BinTree.h"
 #include "Stack.h"
 #include "Vector.h"
-#endif
+#include "Queue.h"
+#include "ListNode.h"
+#include "List.h"
+

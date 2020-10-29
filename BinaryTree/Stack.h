@@ -1,5 +1,4 @@
-#ifndef STACK_H
-#define STACK_H
+#pragma once
 #include "Vector.h"
 #include "BinNode.h"
 template <typename T>
@@ -21,4 +20,3 @@ public:
     // remove: Conflict with an existing function in cstdio.h
     T pop() { return this->Remove(this->Size() - 1); }
 };
-#endif

@@ -26,13 +26,7 @@
     <ClInclude Include="BinTree.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Stack.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

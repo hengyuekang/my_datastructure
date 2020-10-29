@@ -1,6 +1,6 @@
-#ifndef BINNODE_H
-#define BINNODE_H
+#pragma once
 #include "Stack.h"
+#include "Queue.h"
 // similar to list
 #define BinNodePosi(T) BinNode<T> *
 // height of empty tree is -1
@@ -56,7 +56,7 @@ public:
     // read only
     // size of subtree
     int size() const;
-    BinNodePosi(T) succ() const;
+    BinNodePosi(T) succ();
     // write
     BinNodePosi(T) insertAsLC(T const &e);
     BinNodePosi(T) insertAsRC(T const &e);
@@ -249,4 +249,159 @@ void travPre_I2(BinNodePosi(T) x, VST &visit)
         x = S.pop();
     }
 }
-#endif
+template <typename T, typename VST>
+void travIn_I1(BinNodePosi(T) x, VST &visit)
+{
+    Stack<BinNodePosi(T)> S;
+    while (1)
+    {
+        goAlongLeftBranch(x, S);
+        if (S.empty())
+        {
+            break;
+        }
+        x = S.pop();
+        // only once
+        visit(x->_data);
+        x = x->_rc;
+    }
+}
+template <typename T>
+static void goAlongLeftBranch(BinNodePosi(T) x, Stack<BinNodePosi(T)> &S)
+{
+    while (x)
+    {
+        S.push(x);
+        x = x->_lc;
+    }
+}
+template <typename T>
+BinNodePosi(T) BinNode<T>::succ()
+{
+    BinNodePosi(T) S = this;
+    if (_rc)
+    {
+        S = _rc;
+        while (HasLChild(*S))
+        {
+            S = S->_lc;
+        }
+    }
+    else
+    {
+        // include the last one
+        while (IsRChild(*S))
+        {
+            S = S->_parent;
+        }
+        S = S->_parent;
+    }
+    return S;
+}
+template <typename T, typename VST>
+void travIn_I2(BinNodePosi(T) x, VST &visit)
+{
+    Stack<BinNodePosi(T)> S;
+    while (1)
+    {
+        if (x)
+        {
+            S.push(x);
+            x = x->_lc;
+        }
+        else if (!S.empty())
+        {
+            x = S.pop();
+            visit(x->_data);
+            x = x->_rc;
+        }
+        else
+        {
+            break;
+        }
+    }
+}
+template <typename T, typename VST>
+void travIn_I3(BinNodePosi(T) x, VST &visit)
+{
+    x = firstNode(x);
+    while (x)
+    {
+        visit(x->_data);
+        x = x->succ();
+    }
+}
+template <typename T>
+BinNodePosi(T) firstNode(BinNodePosi(T) x)
+{
+    if (HasLChild(*x))
+    {
+        x = x->_lc;
+    }
+    return x;
+}
+template <typename T, typename VST>
+void travPost_I1(BinNodePosi(T) x, VST &visit)
+{
+    Stack<BinNodePosi(T)> S;
+    gotoHLVFL(x, S);
+    x = S.pop();
+    while (1)
+    {
+        visit(x->_data);
+        if (IsLChild(*x) && HasRChild(*(x->_parent)))
+        {
+            x = x->_parent->_rc;
+            gotoHLVFL(x, S);
+        }
+        if (S.empty())
+        {
+            break;
+        }
+        x = S.pop();
+    }
+}
+// wont change the value of pointer!!!
+template <typename T>
+static void gotoHLVFL(BinNodePosi(T) x, Stack<BinNodePosi(T)> &S)
+{
+    while (1)
+    {
+        S.push(x);
+        if (HasLChild(*x))
+        {
+            x = x->_lc;
+            continue;
+        }
+        if (!HasLChild(*x) && HasRChild(*x))
+        {
+            x = x->_rc;
+            continue;
+        }
+        if (!HasChild(*x))
+        {
+            break;
+        }
+    }
+}
+template <typename T>
+template <typename VST>
+void BinNode<T>::travLevel(VST &visit)
+{
+    Queue<BinNodePosi(T)> Q;
+    Q.enqueue(this);
+    while (!Q.empty())
+    {
+        BinNodePosi(T) x = Q.dequeue();
+        visit(x->_data);
+        if (HasLChild(*x))
+        {
+            Q.enqueue(x->_lc);
+        }
+        if (HasRChild(*x))
+        {
+            Q.enqueue(x->_rc);
+        }
+    }
+}
+

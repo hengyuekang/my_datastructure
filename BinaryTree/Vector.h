@@ -1,8 +1,6 @@
-#ifndef VECTOR_H
-#define VECTOR_H
+#pragma once
 using Rank = int;
 #define DEFAULT_CAPACITY 3
-
 template <typename T>
 class Vector
 {
@@ -170,4 +168,3 @@ T Vector<T>::Remove(Rank r)
     Remove(r, r + 1);
     return e;
 }
-#endif

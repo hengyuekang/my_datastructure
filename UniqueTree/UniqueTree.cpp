@@ -30,42 +30,52 @@ int main(BinTree<char> &tree)
     delete[] in;
     pre = NULL;
     in = NULL;
+    system("pause");
     return 0;
 }
 BinNode<char> *consTheUniTree(char *Pre, char *In, int surNodes)
 {
+    // surNodes and posOfIn assure section
     if (surNodes == 0)
     {
         return NULL;
     }
+    // position of current root in "In"
     int posOfIn = 0;
-    while (Pre[0] != In[posOfIn] && (posOfIn < surNodes - 1))
+    while (Pre[0] != In[posOfIn])
     {
         posOfIn++;
     }
+    // previous roots are abandoned
     BinNode<char> *temp = new BinNode<char>(Pre[0]);
+    // left subtree
     temp->_lc = consTheUniTree(Pre + 1, In, posOfIn);
+    // right subtree
     temp->_rc = consTheUniTree(Pre + posOfIn + 1, In + posOfIn + 1, surNodes - posOfIn - 1);
     return temp;
+}
+void concave(BinNode<char> *p, BinNode<char> *root, int depth)
+{
+    // end
+    if (p == NULL)
+    {
+        return;
+    }
+    else
+    {
+        // output right subtree first
+        concave(p->_rc, root, depth + 1);
+        // show different depths
+        for (int i = 0; i < depth; i++)
+        {
+            std::cout << "\t";
+        }
+        std::cout << p->_data << std::endl;
+        // left tree
+        concave(p->_lc, root, depth + 1);
+    }
 }
 void output(char &node)
 {
     std::cout << node << "\t";
-}
-void concave(BinNode<char> *p, BinNode<char> *root, int len)
-{
-    if (p)
-    {
-        concave(p->_rc, root, len + 1);
-        for (int i = 0; i < len; i++)
-        {
-            std::cout << " ";
-        }
-        if (p != root)
-        {
-            std::cout << "----";
-        }
-        std::cout << p->_data << std::endl;
-        concave(p->_lc, root, len + 1);
-    }
 }

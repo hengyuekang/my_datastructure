@@ -1,5 +1,4 @@
-#ifndef BINTREE_H
-#define BINTREE_H
+#pragma once
 #include "BinNode.h"
 template <typename T>
 class BinTree
@@ -182,4 +181,4 @@ BinTree<T> *BinTree<T>::secede(BinNodePosi(T) x)
     _size -= p->_size;
     return p;
 }
-#endif
+
