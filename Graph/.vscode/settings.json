@@ -1,0 +1,31 @@
+{
+    "files.associations": {
+        "*.rmd": "markdown",
+        "xlocale": "cpp",
+        "system_error": "cpp",
+        "type_traits": "cpp",
+        "xstring": "cpp",
+        "xutility": "cpp",
+        "xlocnum": "cpp",
+        "xmemory": "cpp",
+        "istream": "cpp",
+        "iterator": "cpp",
+        "ostream": "cpp",
+        "compare": "cpp",
+        "exception": "cpp",
+        "initializer_list": "cpp",
+        "ios": "cpp",
+        "iosfwd": "cpp",
+        "iostream": "cpp",
+        "limits": "cpp",
+        "memory": "cpp",
+        "stdexcept": "cpp",
+        "streambuf": "cpp",
+        "tuple": "cpp",
+        "typeinfo": "cpp",
+        "xfacet": "cpp",
+        "xiosbase": "cpp",
+        "xlocinfo": "cpp",
+        "vector": "cpp"
+    }
+}
