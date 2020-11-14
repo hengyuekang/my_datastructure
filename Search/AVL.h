@@ -21,15 +21,15 @@ template <typename T>
 BinNodePosi(T) AVL<T>::insert(const T &e)
 {
     // x:point to a proper place
-    BinNodePosi(T) &x = search(e);
+    BinNodePosi(T) &x = this->search(e);
     if (x)
     {
         return x;
     }
-    BinNodePosi(T) xx = x = new BinNode<T>(e, _hot);
+    BinNodePosi(T) xx = x = new BinNode<T>(e, (this->_hot));
     (this->_size)++;
     // not balance
-    for (BinNodePosi(T) g = _hot; g; g = g->_parent)
+    for (BinNodePosi(T) g = (this->_hot); g; g = g->_parent)
     {
         if (!AvlBalanced(*g))
         {
@@ -39,7 +39,7 @@ BinNodePosi(T) AVL<T>::insert(const T &e)
         }
         else
         {
-            this->upgradeHeight(g);
+            this->updateHeight(g);
         }
     }
     // position of new node
@@ -48,21 +48,21 @@ BinNodePosi(T) AVL<T>::insert(const T &e)
 template <typename T>
 bool AVL<T>::remove(const T &e)
 {
-    BinNodePosi(T) &x = search(e);
+    BinNodePosi(T) &x = this->search(e);
     if (!x)
     {
         return false;
     }
-    removeAt(x, _hot);
+    removeAt(x, (this->_hot));
     (this->_size)--;
-    for (BinNodePosi(T) g = _hot; g; g = g->_parent)
+    for (BinNodePosi(T) g = (this->_hot); g; g = g->_parent)
     {
         if (!AvlBalanced(*g))
         {
             // adjust,put in original tree
             g = FromParentTo(*g) = this->rotateAt(tallerChild(tallerChild(g)));
         }
-        this->upgradeHeight(g);
+        this->updateHeight(g);
     }
     return true;
 }

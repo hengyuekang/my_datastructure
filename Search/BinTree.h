@@ -7,9 +7,9 @@ protected:
     // member
     int _size = 0;
     BinNodePosi(T) _root = NULL;
-    virtual int upgradeHeight(BinNodePosi(T) x);
+    virtual int updateHeight(BinNodePosi(T) x);
     // ancestor height
-    void upgradeHeightAbove(BinNodePosi(T) x);
+    void updateHeightAbove(BinNodePosi(T) x);
 
 public:
     // ctor
@@ -73,7 +73,7 @@ public:
     }
 };
 template <typename T>
-int BinTree<T>::upgradeHeight(BinNodePosi(T) x)
+int BinTree<T>::updateHeight(BinNodePosi(T) x)
 {
     // using max to compare
     int h1 = stature(x->_lc);
@@ -83,11 +83,11 @@ int BinTree<T>::upgradeHeight(BinNodePosi(T) x)
     return x->_height;
 }
 template <typename T>
-void BinTree<T>::upgradeHeightAbove(BinNodePosi(T) x)
+void BinTree<T>::updateHeightAbove(BinNodePosi(T) x)
 {
     while (x)
     {
-        upgradeHeight(x);
+        updateHeight(x);
         x = x->_parent;
     }
 }
@@ -103,7 +103,7 @@ BinNodePosi(T) BinTree<T>::insertAsLC(BinNodePosi(T) x, T const &e)
 {
     _size++;
     x->insertAsLC(e);
-    upgradeHeightAbove(x);
+    updateHeightAbove(x);
     return x->_lc;
 }
 template <typename T>
@@ -111,7 +111,7 @@ BinNodePosi(T) BinTree<T>::insertAsRC(BinNodePosi(T) x, T const &e)
 {
     _size++;
     x->insertAsRC(e);
-    upgradeHeightAbove(x);
+    updateHeightAbove(x);
     return x->_rc;
 }
 template <typename T>
@@ -120,7 +120,7 @@ BinNodePosi(T) BinTree<T>::attachAsLC(BinNodePosi(T) x, BinTree<T> *&S)
     x->_lc = S->_root;
     S->_root->_parent = x;
     _size += S->_size;
-    upgradeHeightAbove(x);
+    updateHeightAbove(x);
     // make T game over
     // delete:an object created by new
     S->_root = NULL;
@@ -136,7 +136,7 @@ BinNodePosi(T) BinTree<T>::attachAsRC(BinNodePosi(T) x, BinTree<T> *&S)
     x->_rc = S->_root;
     S->_root->_parent = x;
     _size += S->_size;
-    upgradeHeightAbove(x);
+    updateHeightAbove(x);
     S->_root = NULL;
     S->_size = 0;
     delete S;
@@ -148,7 +148,7 @@ template <typename T>
 int BinTree<T>::remove(BinNodePosi(T) x)
 {
     FromParentTo(*x) = NULL;
-    upgradeHeightAbove(x->_parent);
+    updateHeightAbove(x->_parent);
     // delete every node after x
     int n = removeAt(x);
     // size of tree
@@ -173,7 +173,7 @@ template <typename T>
 BinTree<T> *BinTree<T>::secede(BinNodePosi(T) x)
 {
     FromParentTo(*x) = NULL;
-    upgradeHeightAbove(x->_parent);
+    updateHeightAbove(x->_parent);
     BinTree<T> *p = new BinTree<T>;
     p->_root = x;
     x->_parent = NULL;

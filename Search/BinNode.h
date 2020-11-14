@@ -26,7 +26,7 @@ related pointers
 #define uncle(p) \
     (IsLChild(*((p)->_parent)) ? (p)->_parent->_parent->_rc : p->_parent->_parent->_lc)
 #define FromParentTo(x) \
-    (IsRoot(x) ? _root : (IsLChild(x) ? (x)._parent->_lc : (x)._parent->_rc))
+    (IsRoot(x) ? (this->_root) : (IsLChild(x) ? (x)._parent->_lc : (x)._parent->_rc))
 // color
 typedef enum
 {
