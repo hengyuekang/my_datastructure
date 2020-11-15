@@ -65,10 +65,22 @@ bool sequence_search(int goal)
     int data[MAXSIZE];
     if (in.is_open())
     {
-        auto start = std::chrono::steady_clock::now();
+
         for (size_t i = 0; i < MAXSIZE; i++)
         {
             in >> data[i];
+            // if (goal == data[i])
+            // {
+            //     auto end = std::chrono::steady_clock::now();
+            //     std::chrono::duration<double, std::micro> elapsed = end - start;
+            //     std::cout << "sequence_search find it,the index is " << i << "." << std::endl;
+            //     std::cout << "to find it,we use " << elapsed.count() << "us" << std::endl;
+            //     return true;
+            // }
+        }
+        auto start = std::chrono::steady_clock::now();
+        for (size_t i = 0; i < MAXSIZE; i++)
+        {
             if (goal == data[i])
             {
                 auto end = std::chrono::steady_clock::now();
@@ -78,6 +90,7 @@ bool sequence_search(int goal)
                 return true;
             }
         }
+
         std::cerr << "sequence_search can't find it." << std::endl;
     }
     else
