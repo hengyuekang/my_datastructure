@@ -27,7 +27,7 @@ int main()
     {
         std::cout << "fail to generate random numbers." << std::endl;
     }
-
+    system("pause");
     return 0;
 }
 bool gene_random(int *data, int size)
