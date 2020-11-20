@@ -197,3 +197,8 @@ void Graph<Tv, Te>::DFS(int v, int &clock)
     // fTime:the time that v is visited
     fTime(v) = ++clock;
 }
+template <typename Tv, typename Te>
+void Graph<Tv, Te>::prim(int s)
+{
+    
+}

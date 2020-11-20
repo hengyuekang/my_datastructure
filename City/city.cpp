@@ -1,6 +1,5 @@
 #include "city.h"
 #include "ui_city.h"
-
 City::City(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::City)
@@ -12,4 +11,8 @@ City::~City()
 {
     delete ui;
 }
+void City::paintEvent(QPaintEvent *event)
+{
+    QPainter painter(this);
 
+}
