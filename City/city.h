@@ -15,9 +15,10 @@ class City : public QWidget
 public:
     City(QWidget *parent = nullptr);
     ~City();
-    void paintEvent(QPaintEvent *event);
+
 
 private:
     Ui::City *ui;
+    void paintEvent(QPaintEvent *);
 };
 #endif // CITY_H
