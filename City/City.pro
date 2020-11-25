@@ -17,12 +17,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     graph.cpp \
+    heap.cpp \
     main.cpp \
-    city.cpp
+    city.cpp \
+    minspantree.cpp \
+    ufsets.cpp
 
 HEADERS += \
     city.h \
-    graph.h
+    graph.h \
+    heap.h \
+    minspantree.h \
+    ufsets.h
 
 FORMS += \
     city.ui

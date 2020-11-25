@@ -92,3 +92,136 @@ void Graph::BFS(const int &v)
     }
     delete []visited;
 }
+void Graph::Kruskal(MinSpanTree &MST)
+{
+    MSTEdgeNode ed;
+    int u=0;
+    int v=0;
+    int count=0;
+    int n=NumberOfVertices();
+    int m=NumberOfEdges();
+    MinHeap<MSTEdgeNode> H(m);
+    UFSets F(n);
+    for(u=0;u<n;u++)
+    {
+        for(v=u+1;v<n;v++)
+        {
+//            have edge
+            if(getWeight(u,v)!=maxValue)
+            {
+                ed.tail=u;
+                ed.head=v;
+                ed.key=getWeight(u,v);
+                H.Insert(ed);
+            }
+
+        }
+    }
+    count=1;
+    while (count<n)
+    {
+        H.Remove(ed);
+        u=F.Find(ed.tail);
+        v=F.Find(ed.head);
+        if(u!=v)
+        {
+            F.Union(u,v);
+            MST.Insert(ed);
+            count++;
+        }
+    }
+}
+void Graph::Prim(const int u0, MinSpanTree &MST)
+{
+    MSTEdgeNode ed;
+    int i=0;
+    int u=0;
+    int v=0;
+    int count=0;
+    int n=NumberOfVertices();
+    int m=NumberOfEdges();
+    u=getVertexPos(u0);
+    MinHeap<MSTEdgeNode> H(m);
+    bool *Vmst=new bool[n];
+    for(i=0;i<n;i++)
+    {
+        Vmst[i]=false;
+    }
+    Vmst[u]=true;
+    do
+    {
+        v=getFirstNeighbor(u);
+        while(v!=-1)
+        {
+            if(!Vmst[v])
+            {
+                ed.tail=u;
+                ed.head=v;
+                ed.key=getWeight(u,v);
+                H.Insert(ed);
+            }
+            v=getNextNeighbor(u,v);
+        }
+        while(!H.IsEmpty()&&count<n)
+        {
+            H.Remove(ed);
+            if(!Vmst[ed.head])
+            {
+                MST.Insert(ed);
+                u=ed.head;
+                Vmst[u]=true;
+                count++;
+                break;
+            }
+        }
+
+    }while (count<n);
+}
+void Graph::Dijkstra(int v, int *dist, int *path)
+{
+    int n=NumberOfVertices();
+    bool *S=new bool[n];
+    int i=0;
+    int j=0;
+    int k=0;
+    int w=0;
+    int min=0;
+    for(i=0;i<n;i++)
+    {
+        dist[i]=getWeight(v,i);
+        S[i]=false;
+        if(i!=v&&dist[i]<maxValue)
+        {
+            path[i]=v;
+        }
+        else
+        {
+            path[i]=-1;
+        }
+    }
+    S[v]=true;
+    dist[v]=0;
+    for(i=0;i<n-1;i++)
+    {
+        min=maxValue;
+        int u=v;
+        for(j=0;j<n;j++)
+        {
+            if(!S[i]&&dist[j]<min)
+            {
+                u=j;
+                min=dist[j];
+            }
+        }
+        S[u]=true;
+        for(k=0;k<n;k++)
+        {
+            w=getWeight(u,k);
+            if(!S[k]&&w<maxValue&&w+dist[u]<dist[k])
+            {
+                dist[k]=dist[u]+w;
+                path[k]=u;
+            }
+        }
+    }
+}

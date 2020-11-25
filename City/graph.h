@@ -1,8 +1,11 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 #include <QPoint>
-#include <QVector>
+//#include <QVector>
 #include <QQueue>
+#include "heap.h"
+#include "ufsets.h"
+#include "minspantree.h"
 class Graph
 {
 private:
@@ -81,6 +84,9 @@ public:
         delete []visited;
     }
     void BFS(const int &v);
+    void Kruskal(MinSpanTree &MST);
+    void Prim(const int u0,MinSpanTree& MST);
+    void Dijkstra(int v,int dist[],int path[]);
 
 
 
