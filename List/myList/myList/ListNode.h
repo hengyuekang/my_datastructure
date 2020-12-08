@@ -10,6 +10,8 @@ class ListNode
 {
     // make it more efficive to use node
 public:
+    int index;
+    int weight;
     T _data;
     // not null in case of exception visit
     ListNodePosi(T) _pred;
@@ -20,7 +22,7 @@ public:
     ListNode(){};
     // for header and trailer
     // p,s for _header and _trailer to initialize
-    ListNode(T const &e, ListNodePosi(T) p = NULL, ListNodePosi(T) s = NULL) : _data(e), _pred(p), _succ(s) {}
+    ListNode(const int i,const int w,T const &e, ListNodePosi(T) p = NULL, ListNodePosi(T) s = NULL) : index(i),weight(w),_data(e), _pred(p), _succ(s) {}
     // read only
     T data() const { return _data; }
     ListNodePosi(T) pred() const { return _pred; }
