@@ -336,7 +336,7 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="BFS">
       <property name="text">
        <string>BFS</string>
       </property>
@@ -398,39 +398,6 @@
     </item>
     <item>
      <widget class="QPushButton" name="pushButton_6">
-      <property name="text">
-       <string>ok</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="">
-   <property name="geometry">
-    <rect>
-     <x>1050</x>
-     <y>830</y>
-     <width>469</width>
-     <height>71</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_4">
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <item>
-       <widget class="QLabel" name="label_26">
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;input two points:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="lineEdit_2"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <widget class="QPushButton" name="pushButton_7">
       <property name="text">
        <string>ok</string>
       </property>

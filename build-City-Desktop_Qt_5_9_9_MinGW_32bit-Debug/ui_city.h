@@ -52,7 +52,7 @@ public:
     QLabel *label_24;
     QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
-    QPushButton *pushButton;
+    QPushButton *BFS;
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
     QPushButton *pushButton_4;
@@ -63,12 +63,6 @@ public:
     QLabel *label_25;
     QLineEdit *lineEdit;
     QPushButton *pushButton_6;
-    QWidget *widget;
-    QHBoxLayout *horizontalLayout_4;
-    QHBoxLayout *horizontalLayout_3;
-    QLabel *label_26;
-    QLineEdit *lineEdit_2;
-    QPushButton *pushButton_7;
 
     void setupUi(QWidget *City)
     {
@@ -153,10 +147,10 @@ public:
         verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        pushButton = new QPushButton(layoutWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        BFS = new QPushButton(layoutWidget);
+        BFS->setObjectName(QStringLiteral("BFS"));
 
-        verticalLayout->addWidget(pushButton);
+        verticalLayout->addWidget(BFS);
 
         pushButton_2 = new QPushButton(layoutWidget);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
@@ -204,32 +198,6 @@ public:
 
         horizontalLayout_2->addWidget(pushButton_6);
 
-        widget = new QWidget(City);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(1050, 830, 469, 71));
-        horizontalLayout_4 = new QHBoxLayout(widget);
-        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        label_26 = new QLabel(widget);
-        label_26->setObjectName(QStringLiteral("label_26"));
-
-        horizontalLayout_3->addWidget(label_26);
-
-        lineEdit_2 = new QLineEdit(widget);
-        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
-
-        horizontalLayout_3->addWidget(lineEdit_2);
-
-
-        horizontalLayout_4->addLayout(horizontalLayout_3);
-
-        pushButton_7 = new QPushButton(widget);
-        pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
-
-        horizontalLayout_4->addWidget(pushButton_7);
-
 
         retranslateUi(City);
 
@@ -263,15 +231,13 @@ public:
         label_22->setText(QApplication::translate("City", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:600;\">577</span></p></body></html>", Q_NULLPTR));
         label_23->setText(QApplication::translate("City", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:600;\">669</span></p></body></html>", Q_NULLPTR));
         label_24->setText(QApplication::translate("City", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:600;\">790</span></p></body></html>", Q_NULLPTR));
-        pushButton->setText(QApplication::translate("City", "BFS", Q_NULLPTR));
+        BFS->setText(QApplication::translate("City", "BFS", Q_NULLPTR));
         pushButton_2->setText(QApplication::translate("City", "DFS", Q_NULLPTR));
         pushButton_3->setText(QApplication::translate("City", "Prim", Q_NULLPTR));
         pushButton_4->setText(QApplication::translate("City", "Kruskal", Q_NULLPTR));
         pushButton_5->setText(QApplication::translate("City", "Dijkstra", Q_NULLPTR));
         label_25->setText(QApplication::translate("City", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600;\">input a point:</span></p></body></html>", Q_NULLPTR));
         pushButton_6->setText(QApplication::translate("City", "ok", Q_NULLPTR));
-        label_26->setText(QApplication::translate("City", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">input two points:</span></p></body></html>", Q_NULLPTR));
-        pushButton_7->setText(QApplication::translate("City", "ok", Q_NULLPTR));
     } // retranslateUi
 
 };

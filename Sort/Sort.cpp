@@ -5,7 +5,7 @@ void gene_random(std::vector<int> &num1, int n1);
 void gene_positive(std::vector<int> &num2, int n2);
 void gene_negative(std::vector<int> &num2, std::vector<int> &num3, int n3);
 void quick_sort(std::vector<int> &num1, int left, int right);
-int parition(std::vector<int> &num1, int left, int right);
+int partition(std::vector<int> &num1, int left, int right);
 void shell_sort(std::vector<int> &num1, int n1);
 void merge_sort(std::vector<int> &num1, std::vector<int> &num, int left, int right);
 void merge(std::vector<int> &num1, std::vector<int> &num, int left, int mid, int right);
@@ -25,8 +25,8 @@ int main()
     auto start = std::chrono::steady_clock::now();
     quick_sort(num1, 0, MAXSIZE - 1);
     shell_sort(num1, MAXSIZE);
-    merge_sort(num1,num,0,MAXSIZE - 1);
-    heap_sort(num1,MAXSIZE);
+    merge_sort(num1, num, 0, MAXSIZE - 1);
+    heap_sort(num1, MAXSIZE);
     auto end = std::chrono::steady_clock::now();
     std::chrono::duration<double, std::micro> elapsed = end - start;
     bool res = examine(num1, MAXSIZE);
@@ -42,6 +42,7 @@ int main()
 }
 void gene_random(std::vector<int> &num1, int n1)
 {
+    // 0~99999999
     for (int i = 0; i < n1; i++)
     {
         num1[i] = rand() % 100000000;
@@ -57,6 +58,7 @@ void gene_positive(std::vector<int> &num2, int n2)
         }
         else
         {
+            // make it positive
             num2[i] = num2[i - 1] + rand() % 6;
         }
     }
@@ -82,6 +84,7 @@ void shell_sort(std::vector<int> &num1, int n1)
             {
                 temp = num1[i];
                 j = i - gap;
+                // directly insert sort
                 do
                 {
                     num1[j + gap] = num1[j];
@@ -97,14 +100,16 @@ void quick_sort(std::vector<int> &num1, int left, int right)
 {
     if (left < right)
     {
-        int pivot = parition(num1, left, right);
+        // divide
+        int pivot = partition(num1, left, right);
         quick_sort(num1, left, pivot - 1);
         quick_sort(num1, pivot + 1, right);
     }
 }
-int parition(std::vector<int> &num1, int left, int right)
+int partition(std::vector<int> &num1, int left, int right)
 {
     int pivot = left;
+    // baseline
     int Numpivot = num1[left];
     for (int i = left + 1; i <= right; i++)
     {
@@ -117,6 +122,7 @@ int parition(std::vector<int> &num1, int left, int right)
             }
         }
     }
+    // right position of baseline
     num1[left] = num1[pivot];
     num1[pivot] = Numpivot;
     return pivot;
@@ -128,12 +134,15 @@ void merge_sort(std::vector<int> &num1, std::vector<int> &num, int left, int rig
         return;
     }
     int mid = (left + right) / 2;
+    // sort left subvector
     merge_sort(num1, num, left, mid);
+    // right
     merge_sort(num1, num, mid + 1, right);
     merge(num1, num, left, mid, right);
 }
 void merge(std::vector<int> &num1, std::vector<int> &num, int left, int mid, int right)
 {
+    // num store original num1
     for (int i = left; i <= right; i++)
     {
         num[i] = num1[i];
@@ -141,6 +150,7 @@ void merge(std::vector<int> &num1, std::vector<int> &num, int left, int mid, int
     int s1 = left;
     int s2 = mid + 1;
     int t = left;
+    // two pointers
     while (s1 <= mid && s2 <= right)
     {
         if (num[s1] < num[s2])
@@ -152,6 +162,7 @@ void merge(std::vector<int> &num1, std::vector<int> &num, int left, int mid, int
             num1[t++] = num[s2++];
         }
     }
+    // merge remain elements
     while (s1 <= mid)
     {
         num1[t++] = num[s1++];

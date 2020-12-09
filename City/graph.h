@@ -1,20 +1,27 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 #include <QPoint>
-//#include <QVector>
+#include <QVector>
 #include <QQueue>
 #include "heap.h"
 #include "ufsets.h"
 #include "minspantree.h"
 class Graph
 {
-private:
+public:
     int *VerticesList;
     int **Edge;
-protected:
+public:
     int maxVertices;
     int numEdges;
     int numVertices;
+    QVector<QPoint> pos;
+    QVector<QPoint> pointdfs;
+    QVector<QPoint> pointbfs;
+    QVector<QPoint> pointkruskal;
+    QVector<QPoint> pointprim;
+    QVector<QPoint> pointdijkstra;
+    int start=0;
     int getVertexPos(int vertex)
     {
         for(int i=0;i<numVertices;i++)
@@ -28,13 +35,18 @@ protected:
 
     }
 public:
-    Graph();
     Graph(int sz=11);
     ~Graph()
     {
         delete []VerticesList;
         delete []Edge;
     }
+    void setStart(int i)
+    {
+        start=i;
+    }
+    void createGraph();
+    void setWeight(int head,int tail,int weight);
     bool insertVertex(const int& vertex);
     bool insertEdge(int v1,int v2,int weight);
     bool removeVertex(int v);

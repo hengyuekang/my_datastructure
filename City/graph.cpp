@@ -1,5 +1,9 @@
 #include "graph.h"
-
+#include <fstream>
+#include <iostream>
+#include <QCoreApplication>
+#include <QString>
+#include <string>
 Graph::Graph(int sz)
 {
     maxVertices=sz;
@@ -21,6 +25,42 @@ Graph::Graph(int sz)
             Edge[i][j]=(i==j)? 0: maxWeight;
         }
     }
+}
+void Graph::setWeight(int head, int tail, int weight)
+{
+    Edge[head][tail]=weight;
+    Edge[tail][head]=weight;
+}
+void Graph::createGraph()
+{
+//    QString qpath;
+//    qpath=QCoreApplication::applicationDirPath();
+//    std::string path=std::string((const char *)qpath.toLocal8Bit());
+//    path.append("\\City\\city.txt");
+    std::fstream in1("city.txt");
+    QPoint temp;
+    int x=0;
+    int y=0;
+    for(int i=0;i<11;i++)
+    {
+        in1>>x>>y;
+        temp.setX(x);
+        temp.setY(y);
+        pos.push_back(temp);
+    }
+    in1.close();
+    std::fstream in2("length.txt");
+
+    int head=0;
+    int tail=0;
+    int weight=0;
+    for(int i=0;i<13;i++)
+    {
+        in2>>head>>tail>>weight;
+        setWeight(head,tail,weight);
+    }
+    in2.close();
+
 }
 int Graph::getFirstNeighbor(int v)
 {
